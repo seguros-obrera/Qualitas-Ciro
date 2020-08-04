@@ -1,0 +1,119 @@
+function modalContacto(type) {
+	description = 'Uno de nuestros ejecutivos estará encantado de brindarte asesoría personalizada para que empieces ya mismo a usar tu Tarjeta ID.'
+	// if(type == 'order') {
+	// 	description = '!'
+	// }
+
+	var str = ''
+	str += '<div class="modal" id="myModal" style="display: none;">'
+	str += '  <div class="modal-dialog" role="document">'
+	str += '    <div class="modal-content">'
+	str += '      <div class="modal-body">'
+	str += '      	<div class="row">'
+	str += '					<div class="col-md-12">'
+	str += '						<div class="form-group" style="text-align: center;">'
+	str += '              <label class="control-label" style="width: 80%;margin: 0 auto;float: none;font-weight: 100;text-align: left;margin-bottom: 20px;color: #444;">'+description+'</label>'
+	if($("#ws_correo_masive").text() != '') {
+		str += '              <input class="form-control" type="email" id="form_email" placeholder="Ingresa aquí tu correo electrónico de contacto (opcional)" style="width: 80%;margin: 0 auto;margin-bottom: 10px;" value="" />'
+	}
+	str += '              <input class="form-control" type="number" id="form_phone" placeholder="Ingresa aquí tu teléfono de contacto" style="width: 80%;margin: 0 auto;" />'
+	str += '						</div>'
+	str += '					</div>'
+	str += '      	</div>'
+	str += '      </div>'
+	str += '      <div class="modal-footer" style="justify-content: center;">'
+	str += '        <button class="btn btn-primary" style="background: #e20a4f;" onclick="addContacto()" type="button"><i class="fa fa-check"></i>¡Solicitar contacto!</button>'
+	if(type == 'order') {
+		str += '        <button class="btn btn-secundary" style="border: 1px solid #e20a4f;color:#e20a4f;" onclick="onContract()" type="button"><i class="fa fa-check"></i>Ordenar ahora</button>'
+	}
+	str += '      </div>'
+	str += '      <p style="text-align:center; padding: 10px;cursor: pointer;" data-dismiss="modal">En otro momento</p>'
+	str += '    </div>'
+	str += '  </div>'
+	str += '</div>'
+
+	str += '<button id="mymodal" style="display:none" data-toggle="modal" data-target="#myModal">modal</button>'
+	
+	$('.modal-backdrop').remove()
+	$('#content_modal_custom').html(str)
+	$('#mymodal').click()
+}
+
+function addContacto() {
+	var name = 'Sin Nombre';//$.trim($('#form_name').val())
+	var phone = $.trim($('#form_phone').val())
+	var email = $.trim($('#form_email').val())
+	var data = {name,phone,email}
+
+	if(phone == '') {
+		alert("¡Oh no! Estás a un paso de tener tu Tarjeta ID. Solo falta tu número.");
+	} else {
+		$ajax('addContacto',data,function(){
+			alert("¡Listo! Solicitaste informes para tu Tarjeta ID. En breve serás contactado.");
+			$('#myModal .close').click()
+		});
+	}
+}
+
+
+function onChangeSelectLang(type, contractor, lang) {
+	countPersons = $("[attr-lang*='visits']").text().match(/\d+/)[0];
+
+	var array_lang = {
+		es: {
+			mini: {
+				addContact: '¡Agrégame a tus contactos!',
+				tel: '¡Llámame!',
+				whats: '¡Mándame un whats!',
+				mail: '¡Escríbeme!',
+				scan: '¡Escanéame!',
+				ubication: '¡Visita mi oficina!',
+				site: 'Mi sitio web',
+				visits: ((countPersons == 1) ? (countPersons + ' persona ha visto esta tarjeta.') : (countPersons + ' personas han visto esta tarjeta.')),
+			},
+			plus: {}
+		},
+		en: {
+			mini: {
+				addContact: 'Add me to your contacts!',
+				tel: 'Call me!',
+				whats: 'Send me an WhatsApp!',
+				mail: 'Send me an email!',
+				scan: 'Scan me!',
+				ubication: 'Visit my office!',
+				site: 'My website',
+				visits: ((countPersons == 1) ? (countPersons + ' person has seen this card.') : (countPersons + ' people have seen this card.')),
+			},
+			plus: {}
+		}
+	}
+
+
+
+	if (type == 'mini') {
+		if(contractor == 'qualitas') {
+			if(lang == 'es')
+				_lang_select = array_lang.es.mini
+			if(lang == 'en')
+				_lang_select = array_lang.en.mini
+
+		}
+
+		$("[attr-lang*='addContact']").text( _lang_select.addContact )
+		$("[attr-lang*='tel']").text( _lang_select.tel )
+		$("[attr-lang*='whats']").text( _lang_select.whats )
+		$("[attr-lang*='mail']").text( _lang_select.mail )
+		$("[attr-lang*='scan']").text( _lang_select.scan )
+		$("[attr-lang*='ubication']").text( _lang_select.ubication )
+		$("[attr-lang*='site']").text( _lang_select.site )
+		$("[attr-lang*='visits']").text( _lang_select.visits )
+	}
+
+}
+
+
+
+
+
+
+

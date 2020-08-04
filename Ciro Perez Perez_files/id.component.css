@@ -1,0 +1,114 @@
+svg {
+	fill: #fff;
+	width: 43px !important;
+	height: 43px !important;
+	padding: 5px;
+	border-radius: 100%; 
+}
+
+
+.ws-wizard-step {
+	background: #e20a4f;
+	color: #fff;
+	padding: 5px;
+	width: 40px;
+	height: 40px;
+	border-radius: 100%;
+	text-align: center;
+	margin: 5px;
+}
+
+
+.ws-wizard-leyend {
+	padding: 5px;
+	margin: 5px;
+	color: #444;
+}
+
+/*Modificado framework JS Cropper*/
+
+.cropper-view-box, .cropper-face {
+	border-radius: 100% !important;
+}
+
+.cropper-view-box {
+	outline: none;
+	outline-color: inherit;
+}
+
+.cropper-face.cropper-move {
+	z-index: 10 !important;
+}
+
+.ws-share-whats {
+	text-align: center;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	background: #fff;
+	z-index: 3;
+	min-height: 16%;
+	transform: translateY(-1000px);
+	transition: transform .5s ease-in-out;
+}
+
+.ws-share-whats.show {
+	transform: translateY(0px);
+}
+
+.ws-share-whats p {
+	font-size: 1.4rem;
+	padding-top: 10px;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+.ws-share-whats img {
+	width: 90px;
+	height: 90px;
+	border-radius: 100%;
+}
+
+.ws-share-whats button {
+	display: block;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 0;
+	background-image: linear-gradient(90deg, #e20a4f, #e25f4f);
+	color: #fff;
+	border-radius: 3px;
+	width: 25%;
+	padding: 5px;
+	cursor: pointer;
+}
+
+.ws-share-whats input {
+	border: 0;
+	background: #f3f3f3;
+	padding: 5px;
+	border-radius: 3px;
+	width: 50%;
+	color: #000;
+}
+
+.ws-share-whats-backdrop {
+	display: none;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 1;
+	background: rgba(0,0,0,0.5);
+}
+
+.ws-promo-container-footer {
+	background-color: red;
+}
+
+.ws-promo-footer1 {
+	width: 100%;
+}

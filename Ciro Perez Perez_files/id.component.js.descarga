@@ -1,0 +1,126 @@
+/*$(function () {
+	'use strict';
+
+	var $swipeTabsContainer = $('.swipe-tabs'),
+	$swipeTabs = $('.swipe-tab'),
+	$swipeTabsContentContainer = $('.swipe-tabs-container'),
+	currentIndex = 0,
+	activeTabClassName = 'active-tab';
+
+	$swipeTabsContainer.on('init', function(event, slick) {
+		$swipeTabsContentContainer.removeClass('invisible');
+		$swipeTabsContainer.removeClass('invisible');
+
+		currentIndex = slick.getCurrent();
+		$swipeTabs.removeClass(activeTabClassName);
+		$('.swipe-tab[data-slick-index=' + currentIndex + ']').addClass(activeTabClassName);
+	});
+
+	$swipeTabsContainer.slick({
+		//slidesToShow: 3.25,
+		slidesToShow: 2,
+		slidesToScroll: 1,
+		arrows: false,
+		infinite: false,
+		swipeToSlide: true,
+		touchThreshold: 100
+	});
+
+	$swipeTabsContentContainer.slick({
+		asNavFor: $swipeTabsContainer,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: false,
+		infinite: false,
+		swipeToSlide: true,
+		draggable: false,
+		touchThreshold: 100
+	});
+
+
+	$swipeTabs.on('click', function(event) {
+    // gets index of clicked tab
+    currentIndex = $(this).data('slick-index');
+    $swipeTabs.removeClass(activeTabClassName);
+    $('.swipe-tab[data-slick-index=' + currentIndex +']').addClass(activeTabClassName);
+    $swipeTabsContainer.slick('slickGoTo', currentIndex);
+    $swipeTabsContentContainer.slick('slickGoTo', currentIndex);
+  });
+
+  //initializes slick navigation tabs swipe handler
+  $swipeTabsContentContainer.on('swipe', function(event, slick, direction) {
+  	currentIndex = $(this).slick('slickCurrentSlide');
+  	$swipeTabs.removeClass(activeTabClassName);
+  	$('.swipe-tab[data-slick-index=' + currentIndex + ']').addClass(activeTabClassName);
+  });
+});*/
+
+$(document).ready(function() {
+	// $( window ).resize(function() {
+	// 	height = $("#ws_reference_banner").height()
+	// 	width = $("#ws_reference_banner").width()
+	// 	$(".ws-contact-header svg")
+	// 	.attr('style', 'width: '+width+'px !important;height: '+(height - 90)+'px !important;border-radius: 0;padding: 0;')
+	// })
+})
+
+function $ajax(host,opt,data,completo) {
+	var ruta_server = 'REST/controllers/'
+	$.ajax({
+		url: ruta_server+''+host+'Controller?opt='+opt,
+		type: 'POST',
+		datatype: 'JSON',
+		data: data,
+		success: completo,
+		error: function(e,t) {
+			console.log(e)
+		}
+	})
+}
+
+function $ajaxTmp(opt,data,completo) {
+	var ruta_server = 'REST/controllers/'
+	$.ajax({
+		url: ruta_server+'ControllerUploads?opt='+opt,
+		type: 'POST',
+		datatype: 'JSON',
+		data: data,
+		success: completo,
+		error: function(e,t) {
+			console.log(e)
+		}
+	})
+}
+
+function _GET(variable) {
+	var query = window.location.search.substring(1);
+	var vars = query.split('&');
+	for (var i = 0; i < vars.length; i++) {
+		var pair = vars[i].split('=');
+		if (decodeURIComponent(pair[0]) == variable) {
+			return decodeURIComponent(pair[1]);
+		}
+	}
+	return '';
+}
+
+
+function onRegisterClic(opt) {
+	var server = 'REST/controllers/'
+	var data = {
+		opt:opt,
+		app_id:'lkh2378dslj891j'
+	}
+	$.ajax({
+		url: server + 'ControllerInteractions.php?opt=saveInteraction',
+		type: 'POST',
+		datatype: 'JSON',
+		data: data,
+		success: function (res) {
+			console.log(res)
+		},
+		error: function (e, t) {
+			console.log(e.responseJSON)
+		}
+	})
+}
